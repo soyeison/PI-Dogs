@@ -6,56 +6,39 @@ const { API_KEY } = process.env;
 const router = Router();
 
 async function breedApi(idRaza) {
-  if (idRaza) {
-    const breed = await axios.get(
-      `https://api.thedogapi.com/v1/breeds/search?q=${idRaza}&api_key=${API_KEY}`
+  const breed = axios
+    .get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
+    .then((response) =>
+      response.data.map((element) => {
+        return {
+          id: element.id,
+          name: element.name,
+          year_of_life: element.life_span,
+          height: element.height.metric,
+          weight: element.weight.metric,
+          temperament: element.temperament ? element.temperament : "Not temper",
+          img: element.image.url,
+        };
+      })
     );
-    return breed.data;
-  } else {
-    const breed = axios
-      .get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
-      .then((response) =>
-        response.data.map((element) => {
-          return {
-            id: element.id,
-            name: element.name,
-            year_of_life: element.life_span,
-            height: element.height.metric,
-            weight: element.weight.metric,
-            temperament: element.temperament
-              ? element.temperament
-              : "Not temper",
-            img: element.image.url,
-          };
-        })
-      );
-    return breed;
-  }
+  return breed;
 }
 
-async function breeds(idRaza) {
-  if (idRaza) {
-    let breedsList = [];
-    const breedDb = await Dog.findAll();
-    const breedAp = await breedApi(idRaza);
-    breedsList.push(breedDb, breedAp);
-    breedsList = breedsList[0].concat(breedsList[1]);
-    return breedsList;
-  } else {
-    let breedsList = [];
-    const breedDb = await Dog.findAll();
-    const breedAp = await breedApi();
-    breedsList.push(breedDb, breedAp);
-    breedsList = breedsList[0].concat(breedsList[1]);
-    return breedsList;
-  }
+async function breeds() {
+  let breedsList = [];
+  const breedDb = await Dog.findAll();
+  const breedAp = await breedApi();
+  breedsList.push(breedDb, breedAp);
+  breedsList = breedsList[0].concat(breedsList[1]);
+  return breedsList;
 }
 
 router.get("/:idRaza", async (req, res) => {
   try {
     const { idRaza } = req.params;
-    const breed = await breeds(idRaza);
-    res.json(breed);
+    const breed = await breeds();
+    const breedApiFilter = breed.filter((e) => e.id === parseInt(idRaza));
+    res.json(breedApiFilter);
   } catch (error) {
     return res.status(500).json({
       message: error.message,
