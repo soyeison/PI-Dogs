@@ -1,0 +1,8 @@
+.landing {
+    height: 710px;
+    background-image: url("./perro3.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}
