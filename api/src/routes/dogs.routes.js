@@ -5,7 +5,7 @@ const { API_KEY } = process.env;
 
 const router = Router();
 
-async function breedApi(idRaza) {
+async function breedApi() {
   const breed = axios
     .get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
     .then((response) =>
@@ -38,7 +38,7 @@ router.get("/:idRaza", async (req, res) => {
     const { idRaza } = req.params;
     const breed = await breeds();
     const breedApiFilter = breed.filter((e) => e.id === parseInt(idRaza));
-    res.json(breedApiFilter);
+    res.json(breedApiFilter[0]);
   } catch (error) {
     return res.status(500).json({
       message: error.message,

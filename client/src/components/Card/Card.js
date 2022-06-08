@@ -7,7 +7,7 @@ export default function Card(props) {
       <div className="texto">
         <h3>Breed: {props.name}</h3>
         <p>Temperament: {props.temper}</p>
-        <p>Weight: {props.weight} kg</p>
+        <p>Weight: {props.weight} lb</p>
       </div>
     </div>
   );

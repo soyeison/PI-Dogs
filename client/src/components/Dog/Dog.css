@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.imgPerro {
+    width: 400px;
+}
+
+.col {
+    max-width: 400px;
+}
+
+.info {
+    justify-content: start;
+}
