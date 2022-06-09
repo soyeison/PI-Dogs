@@ -9,8 +9,8 @@ export default function Buscador(props) {
   const [name, setName] = useState("");
 
   const dispatch = useDispatch();
-  const dog = useSelector((state) => state.dogsFilter);
-  const dogsList = useSelector((state) => state.dogsList); //Este trae todos los perros
+  var dogsFilter = useSelector((state) => state.dogsFilter);
+  var dogsList = useSelector((state) => state.dogsList); //Este trae todos los perros
 
   useEffect(() => {
     dispatch(getDogsList());
@@ -40,10 +40,10 @@ export default function Buscador(props) {
         </div>
         <button type="submit">BUSCAR</button>
       </form>
-      {dog.length === 0 ? (
+      {dogsFilter.length === 0 ? (
         <Paginado dogs={dogsList} />
       ) : (
-        <Paginado dogs={dog} />
+        <Paginado dogs={dogsFilter} />
       )}
     </div>
   );

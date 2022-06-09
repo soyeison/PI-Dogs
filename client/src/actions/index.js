@@ -26,6 +26,7 @@ export function postDog(name, height, weight, year) {
 }
 
 export function getDogsList() {
+  //Este trae todos los perros
   return async function (dispatch) {
     const dogsList = await axios.get("http://localhost:3001/dogs");
     dispatch({ type: GET_DOGS_LIST, payload: dogsList.data });

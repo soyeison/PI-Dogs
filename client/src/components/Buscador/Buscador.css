@@ -1,12 +1,2 @@
-.card {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-decoration: none;
-    list-style: none;
-}
 
-.card-list{
-    text-decoration: none;
-}
 
