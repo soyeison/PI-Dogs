@@ -6,7 +6,7 @@ import "./Paginado.css";
 export default function Paginado(props) {
   //por props me mandan la lista de perros
   var { dogs } = props;
-  const [order, setOrder] = useState(true); //Este estado lo puedo utilizar luego para filtrar tambien por temperamento
+  /* const [order, setOrder] = useState(true); */ //Este estado lo puedo utilizar luego para filtrar tambien por temperamento
   const [paginado, setPaginado] = useState({
     prev: 0,
     next: 8,
@@ -32,7 +32,7 @@ export default function Paginado(props) {
     }
   };
 
-  function handleOrderChange(e) {
+  /*   function handleOrderChange(e) {
     dogs = dogs.sort((a, b) => a.name.localeCompare(b.name));
     if (e.target.value === "a - z") {
       setOrder(true);
@@ -41,16 +41,11 @@ export default function Paginado(props) {
       dogs = dogs.reverse();
       setOrder(false);
     }
-  }
+  } */
 
   let pag = dogs.slice(paginado.prev, paginado.next);
   return (
     <div>
-      <select onChange={handleOrderChange}>
-        <option>Order</option>
-        <option>a - z</option>
-        <option>z - a</option>
-      </select>
       <button onClick={handlePrevClick}>PREV</button>
       <button onClick={handleNextClick}>NEXT</button>
       <ul className="card">
@@ -61,7 +56,7 @@ export default function Paginado(props) {
                 <Card
                   img={e.img}
                   name={e.name}
-                  temper={e.temperament}
+                  temper={e.tempers}
                   weight={e.weight}
                 />
               }

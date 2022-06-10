@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { postDog } from "../../actions/index.js";
 
 //Crear validaciones de formulario(Que no se pueda mandar inputs vacíos, etc.)
+//Agregagr 3 seleccionables: para que el usuario seleccione peso, altura y temperamento
 
 export default function Creator() {
   const [data, setData] = useState({
