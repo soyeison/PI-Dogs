@@ -17,7 +17,7 @@ export const getDogDetail = (id) => async (dispatch) => {
 export function postDog(name, height, weight, year) {
   return function (dispatch) {
     return axios.post("http://localhost:3001/dogs", {
-      name,
+      name: name[0].toUpperCase() + name.substring(1),
       height,
       weight,
       years_of_life: year,

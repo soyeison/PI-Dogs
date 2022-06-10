@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const axios = require("axios");
-const { Dog } = require("../db.js");
+const { Dog, Temper } = require("../db.js");
 const { API_KEY } = process.env;
 
 const router = Router();
@@ -70,14 +70,18 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { name, height, weight, years_of_life } = req.body;
+    const { name, height, weight, years_of_life, temperament } = req.body;
     const dog = await Dog.create({
       name,
       height,
       weight,
       years_of_life,
     });
-    res.json(dog);
+    const temp = await Temper.findAll({
+      where: { name: temperament },
+    });
+    dog.addTemper(temp);
+    res.json(temp);
   } catch (error) {
     return res.status(500).json({
       message: error.message,
