@@ -29,6 +29,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      img: {
+        type: DataTypes.STRING,
+        defaultValue:
+          "https://pbs.twimg.com/media/FM41HdEWYAQAauP?format=jpg&name=large",
+      },
     },
     {
       timestamps: false,
