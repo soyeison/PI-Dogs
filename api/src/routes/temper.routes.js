@@ -34,11 +34,11 @@ async function temperamentsListApi() {
 router.get("/", async (req, res) => {
   const breed = await temperamentsListApi();
   for (let i = 0; i < breed.length; i++) {
-    await Temper.create({
-      name: breed[i],
+    await Temper.findOrCreate({
+      where: { name: breed[i] },
     });
   }
-  const temp = await Temper.findAll(); //Cambiar propiedad para que no cargue los datos cada vez que se recarga la página
+  const temp = await Temper.findAll();
   res.json(temp);
 });
 

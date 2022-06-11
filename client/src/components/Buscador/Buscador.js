@@ -55,6 +55,7 @@ export default function Buscador(props) {
     setOrder(e.target.value);
   }
 
+  console.log("Este es el temper de buscador", dogsTemper);
   return (
     <div>
       <div>

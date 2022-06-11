@@ -7,6 +7,7 @@ import { getTemperaments, postDog } from "../../actions/index.js";
 
 export default function Creator() {
   const [temper, setTemper] = useState([]);
+  console.log(temper);
   const [data, setData] = useState({
     name: "",
     height: "", //Altura
@@ -48,6 +49,8 @@ export default function Creator() {
     e.preventDefault();
     setTemper([...temper, e.target.value]);
   }
+
+  console.log("Este es el temper de creator", dogsTemper);
   return (
     <div>
       <form onSubmit={handleSubmit}>
