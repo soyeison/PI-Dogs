@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
       name: breed[i],
     });
   }
-  const temp = await Temper.findAll();
+  const temp = await Temper.findAll(); //Cambiar propiedad para que no cargue los datos cada vez que se recarga la página
   res.json(temp);
 });
 

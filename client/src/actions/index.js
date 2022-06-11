@@ -19,13 +19,15 @@ export const getDogDetail = (id) => async (dispatch) => {
   dispatch({ type: GET_DOG_DETAIL, payload: dogs.data });
 };
 
-export function postDog(name, height, weight, year) {
-  return function () {
-    return axios.post("http://localhost:3001/dogs", {
+export function postDog(name, height, weight, year, img, temperament) {
+  return async function () {
+    return await axios.post("http://localhost:3001/dogs", {
       name: name[0].toUpperCase() + name.substring(1),
       height,
       weight,
       years_of_life: year,
+      img,
+      temperament,
     });
   };
 }

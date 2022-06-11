@@ -77,7 +77,11 @@ export default function Buscador(props) {
         <select onChange={handleTemperChange}>
           {dogsTemper &&
             dogsTemper.map((t) => {
-              return <option value={t.name}>{t.name}</option>;
+              return (
+                <option key={t.id_temper} value={t.name}>
+                  {t.name}
+                </option>
+              );
             })}
         </select>
       </div>

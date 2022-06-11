@@ -91,12 +91,13 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { name, height, weight, years_of_life, temperament } = req.body;
+    const { name, height, weight, years_of_life, img, temperament } = req.body;
     const dog = await Dog.create({
       name,
       height,
       weight,
       years_of_life,
+      img,
     });
 
     const temp = await Temper.findAll({
