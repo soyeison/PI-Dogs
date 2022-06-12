@@ -6,7 +6,7 @@ import {
   getOrderName,
   getOrderWeight,
   getTemperaments,
-  filerTemp,
+  filterTemp,
 } from "../../actions/index.js";
 import "./Buscador.css";
 import Paginado from "../Paginado/Paginado.js";
@@ -51,11 +51,10 @@ export default function Buscador(props) {
 
   function handleTemperChange(e) {
     e.preventDefault();
-    dispatch(filerTemp(e.target.value));
+    dispatch(filterTemp(e.target.value));
     setOrder(e.target.value);
   }
 
-  console.log("Este es el temper de buscador", dogsTemper);
   return (
     <div>
       <div>

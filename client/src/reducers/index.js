@@ -30,7 +30,6 @@ const rootReducer = (state = initialState, action) => {
         dogDetail: action.payload,
       };
     case GET_DOGS_LIST: //Este trae todos los perros
-      console.log(state);
       return {
         ...state,
         dogsOrder: action.payload,

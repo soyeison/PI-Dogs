@@ -21,6 +21,9 @@ export const getDogDetail = (id) => async (dispatch) => {
 
 export function postDog(name, height, weight, year, img, temperament) {
   return async function () {
+    if (img === "") {
+      img = "https://pbs.twimg.com/media/FM41HdEWYAQAauP?format=jpg&name=large";
+    }
     return await axios.post("http://localhost:3001/dogs", {
       name: name[0].toUpperCase() + name.substring(1),
       height,
@@ -59,6 +62,6 @@ export function getTemperaments() {
   };
 }
 
-export function filerTemp(value) {
+export function filterTemp(value) {
   return { type: FILTER_TEMP, payload: value };
 }
