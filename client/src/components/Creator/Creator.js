@@ -9,11 +9,11 @@ import "./Creator.css";
 export function validate(input) {
   let errors = {};
   if (!Number(input.min_year)) {
-    errors.min_year = "debe ser un numero";
+    errors.min_year = "*debe ser un numero";
   } else if (!Number(input.max_year)) {
-    errors.max_year = "debe ser un numero";
+    errors.max_year = "*debe ser un numero";
   } else if (parseInt(input.min_year) > parseInt(input.max_year)) {
-    errors.weight = "El maximo no puede ser mayor que el minimo";
+    errors.weight = "*El maximo no puede ser mayor que el minimo";
   }
   return errors;
 }
@@ -124,7 +124,7 @@ export default function Creator() {
         </div>
         <div className="division">
           <div className="informacion">
-            <div>
+            <div className="nombre">
               <label>Name: </label>
               <input
                 type="text"
@@ -133,9 +133,9 @@ export default function Creator() {
                 value={data["name"]}
                 onChange={handleChange}
               />
-              {data.name === "" && <label>Campo obligatorio</label>}
+              <div>{data.name === "" && <span>*Campo obligatorio</span>}</div>
             </div>
-            <div>
+            <div className="altura">
               <label>Height (In): </label> {/* Poner en ingles despues */}
               <select onChange={handleHeightChange}>
                 <option value="">Option</option>
@@ -146,9 +146,9 @@ export default function Creator() {
                 <option value="60 - 70">60 - 70</option>
                 <option value="70 - 90">70 - 90</option>
               </select>
-              {control.height === "" && <label>Elija una opcion</label>}
+              {control.height === "" && <span>*Elija una opcion</span>}
             </div>
-            <div>
+            <div className="peso">
               <label>Weight (Lb): </label>
               <select onChange={handleWeightChange}>
                 <option value="">Option</option>
@@ -161,31 +161,40 @@ export default function Creator() {
                 <option value="50 - 70">50 - 70</option>
                 <option value="70 - 90">70 - 90</option>
               </select>
-              {control.weight === "" && <label>Elija una opcion</label>}
+              {control.weight === "" && <span>*Elija una opcion</span>}
             </div>
-            <div>
-              <h5>Años de vida: </h5>
+
+            <div className="años">
+              <div className="tituloAños">
+                <h5>Lifespan: </h5>
+              </div>
+              <div className="datosAños">
+                <div>
+                  <label>From: </label>
+                  <input
+                    type="text"
+                    autoComplete="off"
+                    name="min_year" //Organizar en columna para evitar que se reacomoden
+                    value={data["min_year"]}
+                    onChange={handleChange}
+                  />
+                  {errors.min_year && <span>{errors.min_year}</span>}
+                </div>
+                <div>
+                  <label>To: </label>
+                  <input
+                    type="text"
+                    autoComplete="off"
+                    name="max_year"
+                    value={data["max_year"]}
+                    onChange={handleChange}
+                  />
+                  {errors.max_year && <span>{errors.max_year}</span>}
+                </div>
+              </div>
             </div>
-            <div>
-              <label>Desde: </label>
-              <input
-                type="text"
-                autoComplete="off"
-                name="min_year" //Organizar en columna para evitar que se reacomoden
-                value={data["min_year"]}
-                onChange={handleChange}
-              />
-              {errors.min_year && <label>{errors.min_year}</label>}
-              <label>Hasta: </label>
-              <input
-                type="text"
-                autoComplete="off"
-                name="max_year"
-                value={data["max_year"]}
-                onChange={handleChange}
-              />
-              {errors.max_year && <label>{errors.max_year}</label>}
-              {errors.weight && <label>{errors.weight}</label>}
+            <div className="errorPeso">
+              {errors.weight && <span>{errors.weight}</span>}
             </div>
             <div>
               <label>Image: </label>
@@ -211,8 +220,8 @@ export default function Creator() {
                   );
                 })}
             </select>
-            <div>
-              <ul>
+            <div className="opcionesTemper">
+              <ul className="listaTemper">
                 {control.temper &&
                   control.temper.map((e, i) => (
                     <li key={i}>
@@ -228,16 +237,18 @@ export default function Creator() {
             </div>
           </div>
         </div>
-        <div className="botonEnviar">
+        <div>
           {data.name === "" ||
           control.height === "" ||
           control.weight === "" ||
           errors.min_year ||
           errors.max_year ||
           errors.weight ? (
-            <p>Faltan campos por rellenar</p>
+            <h3 className="prevBoton">Missing Fields to Fill</h3>
           ) : (
-            <button type="submit">ENVIAR</button>
+            <button className="botonEnviar" type="submit">
+              SEND
+            </button>
           )}
         </div>
       </form>

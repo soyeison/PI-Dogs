@@ -8,7 +8,7 @@
 }
 
 .formulario {
-    width: 750px;
+    width: 650px;
     height: 500px;
     position: relative;
     top: 50px;
@@ -16,6 +16,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.tituloTemperamento { 
+    font-family: Comic Sans MS; 
+    font-weight:bold; 
+    font-size: 30px; 
+    color: #49b9d5; 
+    text-shadow: -1px 0 #414D68, 0 1px #414D68, 1px 0 #414D68, 0 -1px #414D68, -2px 2px 0 #414D68, 2px 2px 0 #414D68, 1px 1px #414D68, 2px 2px #414D68, 3px 3px #414D68, 4px 4px #414D68, 5px 5px #414D68;
 }
 
 .division {
@@ -33,6 +41,108 @@
     padding-left: 30px;
 }
 
+.nombre span {
+    color: #49b9d5;
+}
+
+.altura select {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    padding: 5px;
+    width: 100px;
+}
+
+.altura span {
+    color: #49b9d5;
+    padding-left: 8px;
+}
+
+.peso select {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    padding: 5px;
+    width: 100px;
+}
+
+.peso span {
+    color: #49b9d5;
+    padding-left: 8px;
+}
+
+.años {
+    position: static;
+    display: flex;
+}
+
+.tituloAños {
+    padding-right: 30px;
+}
+
+.datosAños {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    position: static;
+}
+
+.datosAños span {
+    color: #49b9d5;
+}
+
+.datosAños input {
+    width: 50px;
+}
+
+.errorPeso {
+    width: 350px;
+}
+
+.errorPeso span {
+    color: #49b9d5;
+}
+
 .temperamento {
     padding-right: 30px;
+}
+
+.temperamento select {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    padding: 5px;
+    width: 100px;
+}
+
+.listaTemper {
+    list-style: none;
+}
+
+.prevBoton { 
+    font-family: Comic Sans MS; 
+    font-weight:bold; 
+    font-size: 20px; 
+    color: #49b9d5; 
+    text-shadow: -1px 0 #414D68, 0 1px #414D68, 1px 0 #414D68, 0 -1px #414D68, -2px 2px 0 #414D68, 2px 2px 0 #414D68, 1px 1px #414D68, 2px 2px #414D68, 3px 3px #414D68, 4px 4px #414D68, 5px 5px #414D68;
+}
+
+.botonEnviar {
+    background-color:#49b9d5;
+	border-radius:28px;
+	border:1px solid #35adcb;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+}
+.botonEnviar:hover {
+	background-color:#3fa2bb;
+}
+.botonEnviar:active {
+	position:relative;
+	top:1px;
 }

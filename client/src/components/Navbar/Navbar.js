@@ -3,16 +3,16 @@ import "./Navbar.css";
 
 export default function Navbar() {
   return (
-    <div className="container">
+    <div className="contenedorNav">
       <ul className="lista">
         <li className="menuLink">
-          <Link className="elemento" exact to="/home">
-            Home
+          <Link className="elementoNav" exact to="/home">
+            <span>Home</span>
           </Link>
         </li>
         <li className="menuLink">
-          <Link className="elemento" to="/creator">
-            Add a Dog
+          <Link className="elementoNav" to="/creator">
+            <span>Add a Dog</span>
           </Link>
         </li>
       </ul>
