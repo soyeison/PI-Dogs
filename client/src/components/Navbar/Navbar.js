@@ -1,20 +1,21 @@
 import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 export default function Navbar() {
   return (
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <Link exact to="/home">
-              HOME
-            </Link>
-          </li>
-          <li>
-            <Link to="/creator">CREATOR</Link>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <div className="container">
+      <ul className="lista">
+        <li className="menuLink">
+          <Link className="elemento" exact to="/home">
+            Home
+          </Link>
+        </li>
+        <li className="menuLink">
+          <Link className="elemento" to="/creator">
+            Add a Dog
+          </Link>
+        </li>
+      </ul>
+    </div>
   );
 }

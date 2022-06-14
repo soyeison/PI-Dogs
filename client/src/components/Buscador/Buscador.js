@@ -10,6 +10,7 @@ import {
 } from "../../actions/index.js";
 import "./Buscador.css";
 import Paginado from "../Paginado/Paginado.js";
+import Navbar from "../Navbar/Navbar.js";
 
 export default function Buscador(props) {
   //Faltan los botones de ordenamiento
@@ -57,6 +58,7 @@ export default function Buscador(props) {
 
   return (
     <div>
+      <Navbar />
       <div>
         <h2>BUSCADOR</h2>
         <form onSubmit={handleSubmit}>

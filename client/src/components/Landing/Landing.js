@@ -5,10 +5,13 @@ import "./Landing.css";
 export default function Landing() {
   return (
     <div className="landing">
-      <h1>Bienvenido</h1>
-      <h2>
-        <Link to="/home">Ingresar</Link>
-      </h2>
+      <div className="info">
+        <h1 className="ingreso">
+          <Link className="link" to="/home">
+            ¡Welcome! Find your dog
+          </Link>
+        </h1>
+      </div>
     </div>
   );
 }

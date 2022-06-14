@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Dog.css";
 import { getDogsList } from "../../actions";
+import Navbar from "../Navbar/Navbar";
 
 export default function Dog(props) {
   var dogsId;
@@ -23,6 +24,7 @@ export default function Dog(props) {
 
   return (
     <div className="container">
+      <Navbar />
       {<img className="col-imgPerro" src={dogsId[0].img} alt="Poster" />}
       <div className="col-info">
         <h1>{dogsId[0].name}</h1>
