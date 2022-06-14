@@ -57,10 +57,12 @@ export default function Buscador(props) {
   }
 
   return (
-    <div>
-      <Navbar />
-      <div>
-        <h2>BUSCADOR</h2>
+    <div className="buscador">
+      <div className="navbarBuscador">
+        <Navbar />
+      </div>
+      <div className="elementosBuscar">
+        <h2 className="tituloBuscador">BUSCADOR</h2>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Dog: </label>
@@ -71,35 +73,40 @@ export default function Buscador(props) {
               onChange={handleChange}
             />
           </div>
-          <button type="submit">BUSCAR</button>
+          <button className="botonBuscar" type="submit">
+            BUSCAR
+          </button>
         </form>
       </div>
-      <div>
-        <label>Filtrar por: </label>
-        <select onChange={handleTemperChange}>
-          {dogsTemper &&
-            dogsTemper.map((t) => {
-              return (
-                <option key={t.id_temper} value={t.name}>
-                  {t.name}
-                </option>
-              );
-            })}
-        </select>
-      </div>
-      <div>
-        <label>Order: </label>
-        <select onChange={handleOrderChange}>
-          <option value="ascendente">a - z</option>
-          <option value="descendente">z - a</option>
-        </select>
-      </div>
-      <div>
-        <label>Weight: </label>
-        <select onChange={handleWeightChange}>
-          <option value="asc">ASC</option>
-          <option value="des">DES</option>
-        </select>
+      <div className="filtros">
+        <div className="filtroTemperatura">
+          <label className="tituloFilter">Filter: </label>
+          <select onChange={handleTemperChange}>
+            <option value="">Filter by</option>
+            {dogsTemper &&
+              dogsTemper.map((t) => {
+                return (
+                  <option key={t.id_temper} value={t.name}>
+                    {t.name}
+                  </option>
+                );
+              })}
+          </select>
+        </div>
+        <div className="orden">
+          <label className="ordenTitulo">Order: </label>
+          <select onChange={handleOrderChange}>
+            <option value="ascendente">a - z</option>
+            <option value="descendente">z - a</option>
+          </select>
+        </div>
+        <div>
+          <label className="pesoTitulo">Weight: </label>
+          <select onChange={handleWeightChange}>
+            <option value="asc">ASC</option>
+            <option value="des">DES</option>
+          </select>
+        </div>
       </div>
       {<Paginado dogs={dogsList} />}
     </div>

@@ -1,3 +1,7 @@
+label {
+    font-weight:bold;
+}
+
 .contenedor {
     background-image: url("./perro_formulario.jpg");
     background-repeat: no-repeat;
@@ -77,6 +81,7 @@
 }
 
 .tituloAños {
+    font-size: 20px;
     padding-right: 30px;
 }
 
