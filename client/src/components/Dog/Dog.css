@@ -1,17 +1,45 @@
+label {
+    font-weight:bold;
+}
+
 .container {
+    background-image: url("./perro_detalle_2.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
+    height: 700px;
+}
+
+.infoPerro {
+    margin: 70px;
+    display: flex;
+    width: 980px;
+    height: 450px;
 }
 
 .imgPerro {
-    width: 400px;
+    padding: 15px;
 }
 
-.col {
-    max-width: 400px;
+.imgPerro img {
+    max-width: 450px;
+    max-height: 100%;
 }
 
 .info {
     justify-content: start;
+}
+
+.info h1 {
+    font-weight:bold; 
+    font-size: 30px; 
+    color: #49b9d5; 
+    text-shadow: -1px 0 #414D68, 0 1px #414D68, 1px 0 #414D68, 0 -1px #414D68, -2px 2px 0 #414D68, 2px 2px 0 #414D68, 1px 1px #414D68, 2px 2px #414D68, 3px 3px #414D68, 4px 4px #414D68, 5px 5px #414D68;
 }

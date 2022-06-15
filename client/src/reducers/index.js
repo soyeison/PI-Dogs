@@ -87,7 +87,6 @@ const rootReducer = (state = initialState, action) => {
         dogsTemper: action.payload,
       };
     case FILTER_TEMP:
-      console.log(state);
       let dogsFilterTemp = state.dogsOrder.filter((e) =>
         e.tempers.includes(action.payload)
       );

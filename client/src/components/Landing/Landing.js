@@ -5,7 +5,7 @@ import "./Landing.css";
 export default function Landing() {
   return (
     <div className="landing">
-      <div className="info">
+      <div className="infoLanding">
         <h1 className="ingreso">
           <Link className="link" to="/home">
             ¡Welcome! Find your dog

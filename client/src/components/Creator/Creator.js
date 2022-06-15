@@ -9,11 +9,11 @@ import "./Creator.css";
 export function validate(input) {
   let errors = {};
   if (!Number(input.min_year)) {
-    errors.min_year = "*debe ser un numero";
+    errors.min_year = "*Must be a number";
   } else if (!Number(input.max_year)) {
-    errors.max_year = "*debe ser un numero";
+    errors.max_year = "*Must be a number";
   } else if (parseInt(input.min_year) > parseInt(input.max_year)) {
-    errors.weight = "*El maximo no puede ser mayor que el minimo";
+    errors.weight = "*The maximum cannot be greater than the minimum";
   }
   return errors;
 }
@@ -133,7 +133,7 @@ export default function Creator() {
                 value={data["name"]}
                 onChange={handleChange}
               />
-              <div>{data.name === "" && <span>*Campo obligatorio</span>}</div>
+              <div>{data.name === "" && <span>*Obligatory field</span>}</div>
             </div>
             <div className="altura">
               <label>Height (In): </label> {/* Poner en ingles despues */}
@@ -146,7 +146,7 @@ export default function Creator() {
                 <option value="60 - 70">60 - 70</option>
                 <option value="70 - 90">70 - 90</option>
               </select>
-              {control.height === "" && <span>*Elija una opcion</span>}
+              {control.height === "" && <span>*Choose an option</span>}
             </div>
             <div className="peso">
               <label>Weight (Lb): </label>
@@ -161,7 +161,7 @@ export default function Creator() {
                 <option value="50 - 70">50 - 70</option>
                 <option value="70 - 90">70 - 90</option>
               </select>
-              {control.weight === "" && <span>*Elija una opcion</span>}
+              {control.weight === "" && <span>*Choose an option</span>}
             </div>
 
             <div className="años">

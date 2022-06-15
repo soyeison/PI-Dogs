@@ -24,14 +24,32 @@ export default function Dog(props) {
 
   return (
     <div className="container">
-      <Navbar />
-      {<img className="col-imgPerro" src={dogsId[0].img} alt="Poster" />}
-      <div className="col-info">
-        <h1>{dogsId[0].name}</h1>
-        <p>Temperament: {dogsId[0].tempers}</p>
-        <p>Height: {dogsId[0].height} In</p>
-        <p>Weight: {dogsId[0].weight} lb</p>
-        <p>year_of_life: {dogsId[0].years_of_life} years</p>
+      <div className="navbarPerro">
+        <Navbar />
+      </div>
+      <div className="infoPerro">
+        <div className="imgPerro">
+          <img src={dogsId[0].img} alt="Poster" />
+        </div>
+        <div className="info">
+          <h1>{dogsId[0].name}</h1>
+          <p>
+            <label>Temperament: </label>
+            {dogsId[0].tempers}
+          </p>
+          <p>
+            <label>Height: </label>
+            {dogsId[0].height} In
+          </p>
+          <p>
+            <label>Weight: </label>
+            {dogsId[0].weight} lb
+          </p>
+          <p>
+            <label>Lifespan: </label>
+            {dogsId[0].years_of_life}
+          </p>
+        </div>
       </div>
     </div>
   );

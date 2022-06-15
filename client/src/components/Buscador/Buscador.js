@@ -15,7 +15,11 @@ import Navbar from "../Navbar/Navbar.js";
 export default function Buscador(props) {
   //Faltan los botones de ordenamiento
   const [name, setName] = useState("");
-  const [order, setOrder] = useState("");
+  const [order, setOrder] = useState(false);
+  const [paginado, setPaginado] = useState({
+    prev: 0,
+    next: 8,
+  });
 
   const dispatch = useDispatch();
   const dogsTemper = useSelector((state) => state.dogsTemper);
@@ -23,11 +27,8 @@ export default function Buscador(props) {
 
   useEffect(() => {
     dispatch(getDogsList());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getTemperaments());
-  }, [dispatch]);
+  }, [dispatch]); //
 
   function handleChange(event) {
     setName(event.target.value);
@@ -40,20 +41,30 @@ export default function Buscador(props) {
 
   function handleOrderChange(e) {
     e.preventDefault();
-    dispatch(getOrderName(e.target.value));
-    setOrder(e.target.value);
+    if (e.target.value !== "") {
+      dispatch(getOrderName(e.target.value));
+      setOrder(!order);
+    }
   }
 
   function handleWeightChange(e) {
     e.preventDefault();
-    dispatch(getOrderWeight(e.target.value));
-    setOrder(e.target.value);
+    if (e.target.value !== "") {
+      dispatch(getOrderWeight(e.target.value));
+      setOrder(!order);
+    }
   }
 
   function handleTemperChange(e) {
     e.preventDefault();
-    dispatch(filterTemp(e.target.value));
-    setOrder(e.target.value);
+    if (e.target.value !== "") {
+      dispatch(filterTemp(e.target.value));
+      setOrder(!order);
+    }
+    setPaginado({
+      prev: 0,
+      next: 8,
+    });
   }
 
   return (
@@ -62,10 +73,10 @@ export default function Buscador(props) {
         <Navbar />
       </div>
       <div className="elementosBuscar">
-        <h2 className="tituloBuscador">BUSCADOR</h2>
+        <h2 className="tituloBuscador">SEARCH</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Dog: </label>
+            <label>Breed: </label>
             <input
               type="text"
               autoComplete="off"
@@ -74,7 +85,7 @@ export default function Buscador(props) {
             />
           </div>
           <button className="botonBuscar" type="submit">
-            BUSCAR
+            SUBMIT
           </button>
         </form>
       </div>
@@ -96,19 +107,27 @@ export default function Buscador(props) {
         <div className="orden">
           <label className="ordenTitulo">Order: </label>
           <select onChange={handleOrderChange}>
-            <option value="ascendente">a - z</option>
-            <option value="descendente">z - a</option>
+            <option value="">Option</option>
+            <option value="ascendente">A - Z</option>
+            <option value="descendente">Z - A</option>
           </select>
         </div>
         <div>
           <label className="pesoTitulo">Weight: </label>
           <select onChange={handleWeightChange}>
-            <option value="asc">ASC</option>
-            <option value="des">DES</option>
+            <option value="">Option</option>
+            <option value="asc">FALLING</option>
+            <option value="des">ASCENDANT</option>
           </select>
         </div>
       </div>
-      {<Paginado dogs={dogsList} />}
+      {
+        <Paginado
+          dogs={dogsList}
+          paginado={paginado}
+          setPaginado={setPaginado}
+        />
+      }
     </div>
   );
 }

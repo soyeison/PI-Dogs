@@ -5,20 +5,14 @@ import "./Paginado.css";
 
 export default function Paginado(props) {
   //por props me mandan la lista de perros
-  var { dogs } = props;
-  var paginas = [];
-  const [pagBoton, setPagBoton] = useState([]);
-  const [paginado, setPaginado] = useState({
-    prev: 0,
-    next: 8,
-  });
+  var { dogs, paginado, setPaginado } = props;
 
+  var paginas = [];
   for (let i = 0; i < Math.ceil(dogs.length / 8); i++) {
     paginas.push(i + 1);
   }
 
   const handlePrevClick = () => {
-    setPagBoton([]);
     if (paginado.prev > 0) {
       setPaginado({
         prev: paginado.prev - 8,
@@ -28,7 +22,6 @@ export default function Paginado(props) {
   };
 
   const handleNextClick = () => {
-    setPagBoton([]);
     if (paginado.next < dogs.length) {
       setPaginado({
         prev: paginado.prev + 8,
@@ -37,18 +30,21 @@ export default function Paginado(props) {
     }
   };
 
-  let pag = dogs.slice(paginado.prev, paginado.next);
-
   function paginaClick(pagina) {
     const indexUltimo = pagina * 8;
     const indexPrimero = indexUltimo - 8;
-    setPagBoton(dogs.slice(indexPrimero, indexUltimo));
     setPaginado({
       prev: indexPrimero,
       next: indexUltimo,
     });
   }
 
+  let pag = dogs.slice(paginado.prev, paginado.next);
+
+  console.log("Este es pag", pag);
+  console.log("paginado prev", paginado.prev);
+  console.log("paginado next", paginado.next);
+  /*   console.log("Este es pagBoton", pagBoton); */
   return (
     <div>
       <button className="paginaBoton" onClick={handlePrevClick}>
@@ -68,35 +64,20 @@ export default function Paginado(props) {
         →
       </button>
       <ul className="card">
-        {pagBoton.length !== 0
-          ? pagBoton.map((e) => (
-              <li>
-                <Link className="card-link" to={`/home/${e.id}`}>
-                  {
-                    <Card
-                      img={e.img}
-                      name={e.name}
-                      temper={e.tempers}
-                      weight={e.weight}
-                    />
-                  }
-                </Link>
-              </li>
-            ))
-          : pag.map((e) => (
-              <li className="card-list" key={e.id}>
-                <Link className="card-link" to={`/home/${e.id}`}>
-                  {
-                    <Card
-                      img={e.img}
-                      name={e.name}
-                      temper={e.tempers}
-                      weight={e.weight}
-                    />
-                  }
-                </Link>
-              </li>
-            ))}
+        {pag.map((e) => (
+          <li className="card-list" key={e.id}>
+            <Link className="card-link" to={`/home/${e.id}`}>
+              {
+                <Card
+                  img={e.img}
+                  name={e.name}
+                  temper={e.tempers}
+                  weight={e.weight}
+                />
+              }
+            </Link>
+          </li>
+        ))}
       </ul>
       <button className="paginaBoton" onClick={handlePrevClick}>
         ←
