@@ -10,10 +10,18 @@ export function validate(input) {
   let errors = {};
   if (!Number(input.min_year)) {
     errors.min_year = "*Must be a number";
-  } else if (!Number(input.max_year)) {
+  }
+  if (!Number(input.max_year)) {
     errors.max_year = "*Must be a number";
-  } else if (parseInt(input.min_year) > parseInt(input.max_year)) {
+  }
+  if (parseInt(input.min_year) > parseInt(input.max_year)) {
     errors.weight = "*The maximum cannot be greater than the minimum";
+  }
+  if (input.img) {
+    var r = new RegExp(/^(ftp|http|https):[^ "]+$/);
+    if (!r.test(input.img)) {
+      errors.img = "*Ingrese una URL válida";
+    }
   }
   return errors;
 }
@@ -196,7 +204,7 @@ export default function Creator() {
             <div className="errorPeso">
               {errors.weight && <span>{errors.weight}</span>}
             </div>
-            <div>
+            <div className="imagenCreator">
               <label>Image: </label>
               <input
                 type="text"
@@ -206,6 +214,9 @@ export default function Creator() {
                 placeholder="Ej: 'https://perrito/perritobonito.jpg'"
                 onChange={handleChange}
               />
+              <div className="imagenCreator">
+                {errors.img && <span>{errors.img}</span>}
+              </div>
             </div>
           </div>
           <div className="temperamento">

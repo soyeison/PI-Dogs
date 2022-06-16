@@ -6,6 +6,7 @@ export const GET_ORDER_WEIGHT = "GET_ORDER_WEIGHT";
 export const GET_FILTER_BREED = "GET_FILTER_BREED";
 export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
 export const FILTER_TEMP = "FILTER_TEMP";
+export const GET_ONLY_DB = "GET_ONLY_DB";
 
 const axios = require("axios");
 
@@ -65,4 +66,8 @@ export function getTemperaments() {
 
 export function filterTemp(value) {
   return { type: FILTER_TEMP, payload: value };
+}
+
+export function getOnlyDb() {
+  return { type: GET_ONLY_DB };
 }

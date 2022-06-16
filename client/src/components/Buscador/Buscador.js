@@ -7,6 +7,7 @@ import {
   getOrderWeight,
   getTemperaments,
   filterTemp,
+  getOnlyDb,
 } from "../../actions/index.js";
 import "./Buscador.css";
 import Paginado from "../Paginado/Paginado.js";
@@ -16,6 +17,7 @@ export default function Buscador(props) {
   //Faltan los botones de ordenamiento
   const [name, setName] = useState("");
   const [order, setOrder] = useState(false);
+  const [filtroDb, setFiltroDb] = useState(true);
   const [paginado, setPaginado] = useState({
     prev: 0,
     next: 8,
@@ -67,6 +69,26 @@ export default function Buscador(props) {
     });
   }
 
+  function handleFormChange(e) {
+    if (filtroDb) {
+      dispatch(getOnlyDb());
+      dispatch(getTemperaments());
+      setPaginado({
+        prev: 0,
+        next: 8,
+      });
+      setFiltroDb(!filtroDb);
+    } else {
+      dispatch(getDogsList());
+      dispatch(getTemperaments());
+      setFiltroDb(!filtroDb);
+    }
+  }
+
+  function clickReload() {
+    dispatch(getDogsList());
+  }
+
   return (
     <div className="buscador">
       <div className="navbarBuscador">
@@ -90,6 +112,11 @@ export default function Buscador(props) {
         </form>
       </div>
       <div className="filtros">
+        <div className="botonRecargaDiv">
+          <button className="botonRecarga" onClick={clickReload}>
+            RELOAD
+          </button>
+        </div>
         <div className="filtroTemperatura">
           <label className="tituloFilter">Filter: </label>
           <select onChange={handleTemperChange}>
@@ -119,6 +146,10 @@ export default function Buscador(props) {
             <option value="asc">FALLING</option>
             <option value="des">ASCENDANT</option>
           </select>
+        </div>
+        <div className="creadosDb">
+          <label>Created by form: </label>
+          <input onChange={handleFormChange} value={filtroDb} type="checkbox" />
         </div>
       </div>
       {

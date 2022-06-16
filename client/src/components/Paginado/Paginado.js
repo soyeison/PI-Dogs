@@ -45,10 +45,6 @@ export default function Paginado(props) {
 
   let pag = dogs.slice(paginado.prev, paginado.next);
 
-  console.log("Este es pag", pag);
-  console.log("paginado prev", paginado.prev);
-  console.log("paginado next", paginado.next);
-  /*   console.log("Este es pagBoton", pagBoton); */
   return (
     <div>
       <button className="paginaBoton" onClick={handlePrevClick}>

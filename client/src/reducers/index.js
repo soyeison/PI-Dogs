@@ -6,6 +6,7 @@ import {
   GET_ORDER_WEIGHT,
   GET_TEMPERAMENTS,
   FILTER_TEMP,
+  GET_ONLY_DB,
 } from "../actions";
 
 const initialState = {
@@ -93,6 +94,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         dogsList: dogsFilterTemp,
+      };
+    case GET_ONLY_DB:
+      let onlyDb = state.dogsList.filter((e) => e.id.length > 3);
+      return {
+        dogsList: onlyDb,
+        dogsOrder: onlyDb,
       };
     default:
       return state;
