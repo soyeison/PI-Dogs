@@ -8,6 +8,7 @@ export default function Paginado(props) {
   var { dogs, paginado, setPaginado } = props;
 
   var paginas = [];
+  const [click, setClick] = useState(1);
   for (let i = 0; i < Math.ceil(dogs.length / 8); i++) {
     paginas.push(i + 1);
   }
@@ -18,6 +19,7 @@ export default function Paginado(props) {
         prev: paginado.prev - 8,
         next: paginado.next - 8,
       });
+      setClick(click - 1);
     }
   };
 
@@ -27,6 +29,7 @@ export default function Paginado(props) {
         prev: paginado.prev + 8,
         next: paginado.next + 8,
       });
+      setClick(click + 1);
     }
   };
 
@@ -37,6 +40,7 @@ export default function Paginado(props) {
       prev: indexPrimero,
       next: indexUltimo,
     });
+    setClick(pagina);
   }
 
   let pag = dogs.slice(paginado.prev, paginado.next);
@@ -53,7 +57,7 @@ export default function Paginado(props) {
       {paginas &&
         paginas.map((p) => (
           <button
-            className="paginaBoton"
+            className={click === p ? "clickpaginaBoton" : "paginaBoton"}
             onClick={() => paginaClick(p)}
             value={p}
           >
