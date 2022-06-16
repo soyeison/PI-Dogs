@@ -93,11 +93,13 @@ const rootReducer = (state = initialState, action) => {
       );
       return {
         ...state,
+        dogsOrder: dogsFilterTemp,
         dogsList: dogsFilterTemp,
       };
     case GET_ONLY_DB:
       let onlyDb = state.dogsList.filter((e) => e.id.length > 3);
       return {
+        ...state,
         dogsList: onlyDb,
         dogsOrder: onlyDb,
       };

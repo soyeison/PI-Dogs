@@ -5,10 +5,10 @@ import "./Paginado.css";
 
 export default function Paginado(props) {
   //por props me mandan la lista de perros
-  var { dogs, paginado, setPaginado } = props;
+  var { dogs, paginado, setPaginado, click, setClick } = props;
 
   var paginas = [];
-  const [click, setClick] = useState(1);
+  /* const [click, setClick] = useState(1); */
   for (let i = 0; i < Math.ceil(dogs.length / 8); i++) {
     paginas.push(i + 1);
   }
@@ -53,6 +53,7 @@ export default function Paginado(props) {
       {paginas &&
         paginas.map((p) => (
           <button
+            key={p}
             className={click === p ? "clickpaginaBoton" : "paginaBoton"}
             onClick={() => paginaClick(p)}
             value={p}
@@ -85,6 +86,7 @@ export default function Paginado(props) {
       {paginas &&
         paginas.map((p) => (
           <button
+            key={p + 50}
             className="paginaBoton"
             onClick={() => paginaClick(p)}
             value={p}

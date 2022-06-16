@@ -10,9 +10,13 @@ export function validate(input) {
   let errors = {};
   if (!Number(input.min_year)) {
     errors.min_year = "*Must be a number";
+  } else if (input.min_year.length > 2) {
+    errors.min_year = "*Length exceeded";
   }
   if (!Number(input.max_year)) {
     errors.max_year = "*Must be a number";
+  } else if (input.max_year.length > 2) {
+    errors.max_year = "*Length exceeded";
   }
   if (parseInt(input.min_year) > parseInt(input.max_year)) {
     errors.weight = "*The maximum cannot be greater than the minimum";
@@ -22,6 +26,9 @@ export function validate(input) {
     if (!r.test(input.img)) {
       errors.img = "*Ingrese una URL válida";
     }
+  }
+  if (input.name.length > 20) {
+    errors.name = "*Length exceeded";
   }
   return errors;
 }
@@ -93,10 +100,14 @@ export default function Creator() {
 
   function handleTemperChange(e) {
     e.preventDefault();
-    setControl({
-      ...control,
-      temper: [...control.temper, e.target.value],
-    });
+    if (control.temper.length < 6) {
+      setControl({
+        ...control,
+        temper: [...control.temper, e.target.value],
+      });
+    } else {
+      alert("*Length exceeded");
+    }
   }
 
   function handleWeightChange(e) {
@@ -142,6 +153,7 @@ export default function Creator() {
                 onChange={handleChange}
               />
               <div>{data.name === "" && <span>*Obligatory field</span>}</div>
+              {errors.name && <span>{errors.name}</span>}
             </div>
             <div className="altura">
               <label>Height (In): </label> {/* Poner en ingles despues */}
@@ -222,6 +234,7 @@ export default function Creator() {
           <div className="temperamento">
             <label>Tempermanet: </label>
             <select onChange={handleTemperChange}>
+              <option>Option: </option>
               {dogsTemper &&
                 dogsTemper.map((t) => {
                   return (

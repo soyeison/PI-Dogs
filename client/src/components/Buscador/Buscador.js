@@ -18,6 +18,7 @@ export default function Buscador(props) {
   const [name, setName] = useState("");
   const [order, setOrder] = useState(false);
   const [filtroDb, setFiltroDb] = useState(true);
+  const [click, setClick] = useState(1);
   const [paginado, setPaginado] = useState({
     prev: 0,
     next: 8,
@@ -39,6 +40,15 @@ export default function Buscador(props) {
   function handleSubmit(event) {
     event.preventDefault();
     dispatch(getDogsName(name));
+    if (name === "") {
+      alert("Not Found");
+    }
+    setPaginado({
+      prev: 0,
+      next: 8,
+    });
+    setName("");
+    setClick(1);
   }
 
   function handleOrderChange(e) {
@@ -55,6 +65,7 @@ export default function Buscador(props) {
       dispatch(getOrderWeight(e.target.value));
       setOrder(!order);
     }
+    setClick(1);
   }
 
   function handleTemperChange(e) {
@@ -67,6 +78,7 @@ export default function Buscador(props) {
       prev: 0,
       next: 8,
     });
+    setClick(1);
   }
 
   function handleFormChange(e) {
@@ -83,10 +95,16 @@ export default function Buscador(props) {
       dispatch(getTemperaments());
       setFiltroDb(!filtroDb);
     }
+    setClick(1);
   }
 
   function clickReload() {
     dispatch(getDogsList());
+    setPaginado({
+      prev: 0,
+      next: 8,
+    });
+    setClick(1);
   }
 
   return (
@@ -157,8 +175,13 @@ export default function Buscador(props) {
           dogs={dogsList}
           paginado={paginado}
           setPaginado={setPaginado}
+          click={click}
+          setClick={setClick}
         />
       }
+      <div className="noEncontro">
+        {dogsList.length === 0 && <h1>Not Found</h1>}
+      </div>
     </div>
   );
 }
