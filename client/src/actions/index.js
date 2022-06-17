@@ -11,12 +11,12 @@ export const GET_ONLY_DB = "GET_ONLY_DB";
 const axios = require("axios");
 
 export const getDogsName = (name) => async (dispatch) => {
-  const dogs = await axios.get(`http://localhost:3001/dogs?name=${name}`);
+  const dogs = await axios.get(`/dogs?name=${name}`);
   dispatch({ type: GET_DOGS_NAME, payload: dogs.data });
 };
 
 export const getDogDetail = (id) => async (dispatch) => {
-  const dogs = await axios.get(`http://localhost:3001/dogs/${id}`);
+  const dogs = await axios.get(`/dogs/${id}`);
   dispatch({ type: GET_DOG_DETAIL, payload: dogs.data });
 };
 
@@ -26,7 +26,7 @@ export function postDog(name, height, weight, year, img, temperament) {
       img =
         "https://cdn.pixabay.com/photo/2017/09/04/20/47/child-2715429_1280.jpg";
     }
-    return await axios.post("http://localhost:3001/dogs", {
+    return await axios.post("/dogs", {
       name: name[0].toUpperCase() + name.substring(1),
       height,
       weight,
@@ -40,7 +40,7 @@ export function postDog(name, height, weight, year, img, temperament) {
 export function getDogsList() {
   //Este trae todos los perros
   return async function (dispatch) {
-    const dogsList = await axios.get("http://localhost:3001/dogs");
+    const dogsList = await axios.get("/dogs");
     dispatch({ type: GET_DOGS_LIST, payload: dogsList.data });
   };
 }
@@ -59,7 +59,7 @@ export function getFilterBreed(temper) {
 
 export function getTemperaments() {
   return async function (dispatch) {
-    const dogTemper = await axios.get("http://localhost:3001/temperaments");
+    const dogTemper = await axios.get("/temperaments");
     dispatch({ type: GET_TEMPERAMENTS, payload: dogTemper.data });
   };
 }

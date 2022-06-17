@@ -13,7 +13,6 @@ const initialState = {
   dogsTemper: [],
   dogsOrder: [],
   dogsList: [],
-  dogsFilter: [],
   dogDetail: {},
 };
 
